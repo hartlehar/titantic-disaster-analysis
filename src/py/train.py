@@ -90,5 +90,5 @@ results = pd.DataFrame({
     'Survived': test_pred
 })
 
-results.to_csv("test_predictions.csv", index=False)
+results.to_csv("py/test_predictions.csv", index=False)
 print("\nTest set predictions saved in 'test_predictions.csv' with 2 columns: PassengerId, Survived")
