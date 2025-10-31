@@ -79,6 +79,11 @@ results <- data.frame(
   PassengerId = test$PassengerId,
   Survived = test_pred
 )
+cat(nrow(results), "predictions made.\n")
+
+cat("Preview of predictions:\n")
+print(head(results))
 
 write.csv(results, "test_predictions.csv", row.names = FALSE)
 cat("Predictions saved to test_predictions.csv\n")
+
