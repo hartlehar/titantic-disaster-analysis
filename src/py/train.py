@@ -35,16 +35,17 @@ print("The `test` set has several NaN values in the `Age` columns. \
 These NaN values will be replaced with the median age based on the passenger's age and their ticket class.")
 
 # Convert Sex column into integer, 1 = male and 0 = female
+train['Sex'] = train['Sex'].str.lower()
+test['Sex'] = test['Sex'].str.lower()
 train['Sex'] = (train['Sex'] == 'male').astype(int)
 test['Sex'] = (test['Sex'] == 'male').astype(int)
 print("The `Sex` column is a string which cannot be used in logistic regression. \
 Converting it into a binary variable makes it compatible.")
 
-# Convert Cabin into categorical column
-train['Cabin'] = train['Cabin'].astype('category')
-test['Cabin'] = test['Cabin'].astype('category')
-print("The `Cabin` column is a string which cannot be used in logistic regression. \
-Converting it into a categorical variable.")
+# Drop Cabin column
+train = train.drop(columns=['Cabin'])
+test = test.drop(columns=['Cabin'])
+print("The `Cabin` column has several NaN values so it can be dropped from the data.")
 
 # Convert Embarked into categorical column
 train['Embarked'] = train['Embarked'].astype('category')
@@ -90,5 +91,5 @@ results = pd.DataFrame({
     'Survived': test_pred
 })
 
-results.to_csv("py/test_predictions.csv", index=False)
+results.to_csv("test_predictions.csv", index=False)
 print("\nTest set predictions saved in 'test_predictions.csv' with 2 columns: PassengerId, Survived")
