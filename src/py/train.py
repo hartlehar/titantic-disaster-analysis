@@ -84,12 +84,15 @@ print(f"Model Accuracy on Entire Training Set: {accuracy_score(train_y, pred):.4
 
 ### Make Predictions
 test_pred = model.predict(test_x)
+print(test_pred.shape[0], "predictions made.")
 
 # Save to csv file
 results = pd.DataFrame({
     'PassengerId': test['PassengerId'],
     'Survived': test_pred
 })
+print("Preview of Predictions:")
+print(results.head())
 
 results.to_csv("test_predictions.csv", index=False)
 print("\nTest set predictions saved in 'test_predictions.csv' with 2 columns: PassengerId, Survived")
